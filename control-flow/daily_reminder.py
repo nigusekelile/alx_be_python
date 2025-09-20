@@ -5,6 +5,9 @@ task = input("Enter your task: ")
 priority = input("Priority (high/medium/low): ").lower()
 time_bound = input("Is it time-bound? (yes/no): ").lower()
 
+# Initialize reminder as empty
+reminder = ""
+
 # Process the task based on priority
 match priority:
     case "high":
@@ -22,5 +25,13 @@ if time_bound == "yes":
 elif priority == "low" and time_bound == "no":
     reminder += ". Consider completing it when you have free time."
 
-# Print the final reminder
-print(reminder)
+# --- ✅ CHECKS ---
+# 1. Check if reminder message is generated
+if not reminder:
+    print("Error: No reminder could be generated. Please check your inputs.")
+else:
+    # 2. Check if reminder includes both priority and time sensitivity where needed
+    if "priority" in reminder or "low priority" in reminder or "unknown" in reminder:
+        print(reminder)
+    else:
+        print("Error: Reminder does not include priority information.")
